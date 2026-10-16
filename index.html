@@ -60,6 +60,26 @@
  .wide{font-size:12px}
 }
 
+
+/* Correct the scanner hierarchy on mobile: no tiny placeholder circles or duplicate nav */
+.statusOrb{width:25px;height:25px;display:block;position:relative;border:1px solid #ffbf43;border-radius:50%;box-shadow:0 0 10px #ffbf4330}
+.statusOrb:before,.statusOrb:after{content:"";position:absolute;inset:4px;border:1px solid #ffbf43;border-right-color:transparent;border-radius:50%;animation:orbit 2s linear infinite}
+.statusOrb:after{inset:8px;border-color:#23d8cf transparent #23d8cf #23d8cf;animation:orbitBack 2.8s linear infinite}
+.idleScanner{padding:16px 12px!important;min-height:0!important}
+.idleScanner .scanOrb{width:168px;height:168px;margin-bottom:10px}
+.idleScanner .scanOrb .core{width:84px;height:84px}
+.idleScanner b{display:block;margin:2px 0 8px}
+.idleScanner p{margin:0 auto 8px}
+@media(max-width:900px){
+ .left .sideMenu{display:none!important}
+ .footerNav{display:none!important}
+ .mobileNav{display:flex!important}
+ .mainPanel{padding:12px!important}
+ .idleScanner .scanOrb{width:176px;height:176px}
+ .idleScanner .scanOrb .core{width:88px;height:88px}
+ .mainHead{align-items:flex-start}
+}
+
 </style>
 </head>
 <body>
@@ -70,7 +90,7 @@
 </header>
 <div class="layout">
  <aside class="panel left">
-  <div class="sideTitle"><div><div class="eyebrow">Твой помощник</div><h2>Поиск сигнала</h2></div><span style="font-size:24px">◉</span></div>
+  <div class="sideTitle"><div><div class="eyebrow">Твой помощник</div><h2>Поиск сигнала</h2></div><span class="statusOrb" aria-label="Готов к сканированию"><i></i></span></div>
   <p class="sub">Сканируй рынок и открывай подробности сигнала перед решением в Bybit.</p>
   <div class="marketStats"><div class="stat"><b id="pairsCount">—</b><span>пар проверено</span></div><div class="stat"><b id="signalsCount">—</b><span>кандидатов</span></div><div class="stat"><b>24/7</b><span>данные рынка</span></div></div>
   <button class="bigButton" id="scanBtn"><span class="targetIcon">◎</span>Получить сигнал</button><div id="scanMount"></div>
@@ -84,7 +104,7 @@
   <div class="filters" id="filterRow"><button class="chip active" data-filter="ALL">Все направления</button><button class="chip" data-filter="LONG">LONG</button><button class="chip" data-filter="SHORT">SHORT</button><button class="chip" data-filter="WAIT">Без входа</button></div>
   <div class="search"><input id="searchInput" placeholder="Поиск пары: BTCUSDT, ETHUSDT…" /><button class="chip" id="refreshBtn">Обновить</button></div>
   <div id="content">
-   <div class="empty" id="placeholder"><div style="font-size:28px;color:#ffbf43;margin-bottom:8px">◎</div><b>Нажми «Получить сигнал»</b><p>Бот загрузит рыночные данные и проверит доступные пары.</p><span class="sub">Сигнал появится только после оценки условий; данные пока не загружены.</span></div>
+   <div class="empty idleScanner" id="placeholder"><div class="scanOrb"><div class="sweep"></div><div class="ring3"></div><div class="core">BYB<span>I</span>T</div></div><b>Готов к сканированию</b><p>Нажми «Получить сигнал», чтобы проверить рынок Bybit.</p><span class="sub">Круговой сканер показывает готовность. После нажатия бот загрузит свечи и проверит условия стратегии.</span></div>
   </div>
   <div class="footerNav"><button class="active" data-tab="signals">Сигналы</button><button data-tab="market">Обзор рынка</button><button data-tab="analytics">Аналитика</button><button data-tab="settings">Настройки</button></div>
  </main>
