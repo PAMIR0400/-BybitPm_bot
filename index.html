@@ -80,6 +80,19 @@
  .mainHead{align-items:flex-start}
 }
 
+
+/* Mobile layout correction: keep each section in order and never float navigation over content */
+@media(max-width:900px){
+ .layout{display:flex!important;flex-direction:column!important;gap:12px!important}
+ .left,.middle,.right{order:initial!important;width:100%;min-width:0}
+ .mobileNav{position:static!important;bottom:auto!important;z-index:1!important;margin:14px 0 20px!important}
+ .app{padding-bottom:28px!important}
+ .scanStage{min-height:0!important;padding:20px 12px!important}
+ .scanOrb .core{white-space:nowrap!important;display:flex!important;align-items:center;justify-content:center;font-size:20px!important;letter-spacing:-1.2px!important;flex-wrap:nowrap!important}
+ .idleScanner .scanOrb .core{font-size:19px!important}
+ #scanMount:empty{display:none}
+}
+
 </style>
 </head>
 <body>
